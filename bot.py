@@ -5,6 +5,7 @@ import discord
 import psycopg2
 import requests
 from dotenv import load_dotenv
+import urllib.parse as urlparse
 
 from bot_functions.google_search_function import google_search_functionality
 from bot_functions.get_recent_searches_function import get_list_of_recent_searches
@@ -14,14 +15,31 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 
 client = discord.Client()
 
-#establishing the connection
+
+url = urlparse.urlparse(os.environ['DATABASE_URL'])
+dbname = url.path[1:]
+user = url.username
+password = url.password
+host = url.hostname
+port = url.port
+
+print (url, dbname, user, password, host, port)
+
 conn = psycopg2.connect(
-   database=os.getenv('DATABASE_NAME'),
-   user=os.getenv('DATABASE_USER'),
-   password=os.getenv('DATABASE_PASSWORD'),
-   host=os.getenv('DATABASE_HOST'),
-   port= os.getenv('DATABASE_PORT')
-)
+            dbname=dbname,
+            user=user,
+            password=password,
+            host=host,
+            port=port
+            )
+#establishing the connection
+# conn = psycopg2.connect(
+#    database=os.getenv('DATABASE_NAME'),
+#    user=os.getenv('DATABASE_USER'),
+#    password=os.getenv('DATABASE_PASSWORD'),
+#    host=os.getenv('DATABASE_HOST'),
+#    port= os.getenv('DATABASE_PORT')
+# )
 conn.autocommit = True
 
 #Creating a cursor object using the cursor() method
