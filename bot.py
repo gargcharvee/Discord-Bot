@@ -23,7 +23,6 @@ password = url.password
 host = url.hostname
 port = url.port
 
-print (url, dbname, user, password, host, port)
 
 conn = psycopg2.connect(
             dbname=dbname,

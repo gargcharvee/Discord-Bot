@@ -21,7 +21,6 @@ def send_top_5_search_links(value_to_be_searched):
             '+'.join(value_to_be_searched.split(' '))
         ), headers=google_api_call_headers
     )
-    print (response.status_code, response.text)
     json_response = {}
     if response.status_code == 200 and response.text:
         json_response = json.loads(response.text)
