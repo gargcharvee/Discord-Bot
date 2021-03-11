@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 #establishing the connection
 conn = psycopg2.connect(
-    database='postgres',
+    database=os.getenv('DATABASE'),
     user=os.getenv('DATABASE_USER'),
     password=os.getenv('DATABASE_PASSWORD'),
     host=os.getenv('DATABASE_HOST'),
