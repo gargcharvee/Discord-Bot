@@ -65,7 +65,7 @@ async def on_message(message):
         # links = send_top_5_search_links(text_searched)
         # add_search_results_in_db(text_searched, message.author.id, message.channel.id)
         links = google_search_functionality(cursor, text_searched, message.author.id, message.channel.id)
-        message_to_be_sent = '\n'.join(links) if links else 'No links found on google'
+        message_to_be_sent = '\n'.join(links) if links else 'Could not find any link. Please try again after some time.'
         await message.channel.send(message_to_be_sent)
     
     # Case 3: Bot checks you recent searched items if you type something after !recent.
