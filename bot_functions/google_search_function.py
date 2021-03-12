@@ -37,7 +37,7 @@ def add_search_results_in_db(cursor, text_searched, author_id, channel_id):
     # check if member object exists in db then get its id else create a new member object
     create_member_obj_sql = '''
         insert into member (channel_id, user_id)
-        values({channel_id}, {user_id})
+        values('{channel_id}', '{user_id}')
         on conflict (channel_id, user_id) do nothing
     '''.format(
         channel_id=channel_id, user_id=author_id
