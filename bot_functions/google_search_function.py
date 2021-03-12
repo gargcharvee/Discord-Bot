@@ -27,8 +27,9 @@ def send_top_5_search_links(value_to_be_searched):
 
     list_of_links = []
 
-    for result in json_response.get('results'):
-        list_of_links.append(result['link'])
+    if json_response.get('results'):
+        for result in json_response.get('results'):
+            list_of_links.append(result['link'])
 
     return list_of_links
 
